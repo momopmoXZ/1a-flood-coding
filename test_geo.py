@@ -4,6 +4,10 @@ from floodsystem.stationdata import build_station_list
 import random
 import haversine
 from floodsystem.station import MonitoringStation
+
+'''
+Tests to see if all values are smaller than the next one in list
+'''
 def test_geo_list():
     stations = build_station_list()
     assert stations != None
@@ -16,6 +20,10 @@ def test_geo_list():
         stat1=stat1[1]
         stat2=stat2[1]
         assert stat1<=stat2
+
+'''
+Tests to see if station within radius is classed as within radius
+'''
 
 def test_geo_rad():
     coord1 = (9.9, 9.9)
@@ -37,6 +45,10 @@ def test_geo_rad():
     radius = stations_within_radius(stations, center, rad)
     assert len(radius) == 1
     assert radius[0][0] == s1
+
+'''
+Tests to see if both types of invalid range data is flagged as so
+'''
 
 def test_validity_valuation():
     coord1 = (9.9, 9.9)
