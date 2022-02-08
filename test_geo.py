@@ -2,7 +2,7 @@ from floodsystem.geo import stations_by_distance
 from floodsystem.geo import stations_within_radius
 from floodsystem.stationdata import build_station_list
 import random
-import haversine
+from haversine import haversine
 from floodsystem.station import MonitoringStation
 
 '''
@@ -41,7 +41,7 @@ def test_geo_rad():
     s2 = MonitoringStation(stat, measure, name, coord2, trange,
                  river, town)
     stations=[s1,s2]
-    rad = haversine.haversine(center, coord1)+1
+    rad = haversine(center, coord1)+1
     radius = stations_within_radius(stations, center, rad)
     assert len(radius) == 1
     assert radius[0][0] == s1
